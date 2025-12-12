@@ -1,0 +1,116 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "title",
+						"type": "string"
+					},
+					{
+						"internalType": "string[]",
+						"name": "options",
+						"type": "string[]"
+					}
+				],
+				"name": "createPrediction",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getDeployedPredictions",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "creator",
+						"type": "address"
+					}
+				],
+				"name": "getPredictionsByCreator",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Social Betting/factory.sol": "PredictionFactory"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Social Betting/factory.sol": {
+			"keccak256": "0x63aa98c64f4b802367cbcb30e8b224e5616cc3df4cd72e4d0aca6f71b5d16f9f",
+			"urls": [
+				"bzz-raw://ab3dcba1a816e9bc6d13324c8c879180aee2d6c9eb0f1b28868f71ebedcad3b1",
+				"dweb:/ipfs/QmbrF3PGUm2gZ4MvqDPHXx3mKpTJN9LrQFEKX8wtFmtfNf"
+			]
+		},
+		"Social Betting/prediction.sol": {
+			"keccak256": "0x5e4621a2431a9d522936bca23673a5fafc9d91fb2445fae1557b96a601e145fa",
+			"urls": [
+				"bzz-raw://97b18f19884b377c7710816c2f711e0a8c2117304972166293df4608b3747f31",
+				"dweb:/ipfs/QmTtDp5HqNMiKhVAodm5vBjMDxYd6fTY44Rs3B61fbjuPi"
+			]
+		},
+		"hardhat/console.sol": {
+			"keccak256": "0x7434453e6d3b7d0e5d0eb7846ffdbc27f0ccf3b163591263739b628074dc103a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://49355f780520494d1d5a0f01858385e51bb5280ce0ecfb960f16995065dca395",
+				"dweb:/ipfs/QmSwJ6C5QLz6xKeQZS8wbwjU1KxRFTYfwbGmtzisd5sRW4"
+			]
+		}
+	},
+	"version": 1
+}
