@@ -41,7 +41,7 @@ interface PredictionCardProps {
             prediction.myBet.amount > 0n && prediction.myBet.index == i ? (
               <div key={i} className="flex flex-row gap-2">
                 <span className="px-2 py-1 bg-amber-700 text-lg rounded">{option}</span>
-                <span className="px-2 py-1 bg-amber-700 text-lg rounded">{Web3.utils.fromWei(prediction.totalPool, 'ether')} ETH</span>
+                <span className="px-2 py-1 bg-amber-700 text-lg rounded">{Web3.utils.fromWei(prediction.myBet.amount, 'ether')} ETH</span>
               </div>
             ) : (
               <div key={i}>
