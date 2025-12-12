@@ -32,9 +32,9 @@ interface PredictionCardProps {
     return (
       <div key={prediction.address} className="border border-gray-300 p-4 rounded">
         <h3 className="font-bold text-lg mb-2">{prediction.title}</h3>
-        <h3 className="font-medium text-lg mb-2">{prediction.address}</h3>
+        <h3 className="font-medium text-lg mb-2 w-11/12 wrap-break-word">{prediction.address}</h3>
         {/* <p className="text-sm text-gray-600 mb-2">Owner: {prediction.owner.slice(0, 6)}...{prediction.owner.slice(-4)}</p> */}
-        <p className="text-sm mb-2">Total Pool: {Web3.utils.fromWei(prediction.totalPool, 'ether')} ETH</p>        <div className="flex gap-2 mb-2 flex-col">
+        <p className="text-md italic mb-2">Total Pool: {Web3.utils.fromWei(prediction.totalPool, 'ether')} ETH</p>        <div className="flex gap-2 mb-2 flex-col">
           {prediction.options.map((option, i) => (
             prediction.myBet.amount > 0n && prediction.myBet.index == i ? (
               <div key={i} className="flex flex-row gap-2">
