@@ -85,6 +85,7 @@ class NetworkService {
             //   const bettors = await predictionContract.methods.bettors().call();
               const settled = await predictionContract.methods.settled().call();
               const myBet = await predictionContract.methods.betArray(this.signerAddress).call();
+              console.log("my bet is ",myBet)
               const bet: Bet = {
                 address: addr,
                 title: String(title),

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { networkService } from "./Network";
 import Web3 from 'web3';
+import { ClipLoader } from 'react-spinners';
 
 interface myBet{
     index:Number
@@ -22,11 +23,18 @@ interface PredictionCardProps {
     refresh:()=>void
   }
   
+  const override: CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "#D88A25",
+  };
+
   const PredictionCard = ({ prediction,refresh }: PredictionCardProps) => {
     const [selectedOption, setSelectedOption] = useState<number | null>(null);
     const [amount, setAmount] = useState<string>();
     const [settleInitated,setSettleInitated] = useState(false)
     const [winningIndex,setWinningIndex] = useState(0)
+    let [loading, setLoading] = useState(false);
 
 
 
@@ -37,6 +45,14 @@ interface PredictionCardProps {
         <h3 className="font-medium text-lg mb-2  w-11/12 wrap-break-word">{prediction.address}</h3>
         {/* <p className="text-sm text-gray-600 mb-2">Owner: {prediction.owner.slice(0, 6)}...{prediction.owner.slice(-4)}</p> */}
         <p className="text-md italic mb-2">Total Pool: {Web3.utils.fromWei(prediction.totalPool, 'ether')} ETH</p>        <div className="flex gap-2 mb-2 flex-col">
+        <ClipLoader
+        color="#D88A25"
+        loading={loading}
+        cssOverride={override}
+        size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
           {prediction.options.map((option, i) => (
             prediction.myBet.amount > 0n && prediction.myBet.index == i ? (
               <div key={i} className="flex flex-row gap-2">
@@ -69,14 +85,19 @@ interface PredictionCardProps {
                     onChange={(e) => setAmount((e.target.value))}
                     />
                     <button className="px-3 py-1 bg-blue-500 text-white rounded" onClick={async ()=>{
+                      setLoading(true)
                         const result = await networkService.getOdds(selectedOption,Number(amount),prediction.address)
                         console.log(result)
                         alert("You will get back " + (Number(amount) * Number(result))/100 + " ETH if you win")
+                        setLoading(false)
+
                     }}>Get Odds</button>
                     <button className="px-3 py-1 bg-green-500 text-white rounded"
                     onClick={async ()=>{
+                      setLoading(true)
                         const result = await networkService.placeBet(selectedOption,Number(amount),prediction.address)
                         console.log(result)
+                        setLoading(false)
                         refresh()
                     }}
                     >Bet</button>
@@ -106,9 +127,11 @@ interface PredictionCardProps {
             <button className='bg-amber-300 px-5 py-2 mt-2 cursor-pointer rounded text-lg'
             onClick={async ()=>{
                 if(settleInitated){
+                  setLoading(true)
                     const result = await networkService.settleBet(winningIndex,prediction.address)
                     console.log(result)
                     setSettleInitated(false)
+                    setLoading(false)
                     refresh()
 
                 }

@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type CSSProperties } from 'react'
 import Navbar from './NavBar'
 import { networkService } from './Network';
 import PredictionCard from './PredictionCard';
 import PredictionCard2 from './PredictionCard2';
+import { ClipLoader } from 'react-spinners';
 
 interface myBet{
   index:Number
@@ -19,6 +20,12 @@ interface Bet{
   myBet:myBet
 }
 
+const override: CSSProperties = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "#D88A25",
+}
+
 
 
 function App() {
@@ -28,6 +35,8 @@ function App() {
   const [mybets,setMyBets] = useState<Bet[]>([]);
   const [joinedBets,setJoinedBets] = useState<Bet[]>([]);
   const [betAddress, setBetAddress] = useState<string>(""); //for betting and showing odds
+  let [loading, setLoading] = useState(false);
+;
 
   useEffect(()=>{
 
@@ -40,8 +49,10 @@ function App() {
 
   async function refresh(){
     console.log("refresh")
+    setLoading(true)
     getMyBets().then(result => setMyBets(result ?? []))
     getJoinedBets().then(result => setJoinedBets(result ?? []))
+    setLoading(false)
   }
     
   async function getMyBets(){
@@ -100,12 +111,22 @@ function addJoinedBet(address:string) {
         <Navbar option={option} setOption={setOption} connectwallet={async ()=>{
           console.log("click")
           if(networkService.getSignerAddress() == null){
+            setLoading(true)
             await networkService.connectWallet()
             console.log(networkService.getSignerAddress())
+            setLoading(false)
             return networkService.getSignerAddress() 
           }
           return networkService.getSignerAddress()
         }} ></Navbar>
+        <ClipLoader
+        color="#D88A25"
+        loading={loading}
+        cssOverride={override}
+        size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
         {option == 2 ? 
         <div>
           {/* create bet */}
@@ -133,7 +154,9 @@ function addJoinedBet(address:string) {
   <button className=' bg-amber-200 px-8 py-4 cursor-pointer' onClick={async ()=>{
     const optionArray = options.split(",")
     console.log(optionArray)
+    setLoading(true)
     await networkService.deployPrediction(title,optionArray)
+    setLoading(false)
     setOption(1)
   }}>Create Bet</button>
 
