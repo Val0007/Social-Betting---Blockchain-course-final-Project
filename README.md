@@ -34,8 +34,8 @@ A decentralized social betting platform designed for small groups of friends or 
 
 ## Getting Started
 
-NO API KEY NEEDED TO RUN THE WEBAPP.
-LIVE SITE CAN BE FOUND AT  : [https://socialbetting.netlify.app/](https://socialbetting.netlify.app/)
+**NO API KEY NEEDED TO RUN THE WEBAPP.**
+**LIVE SITE CAN BE FOUND AT  : [https://socialbetting.netlify.app/](https://socialbetting.netlify.app/)**
 
 ### Prerequisites
 
@@ -52,10 +52,10 @@ LIVE SITE CAN BE FOUND AT  : [https://socialbetting.netlify.app/](https://social
 4. Open http://localhost:5173
 
 ### TESTING REPOSITORY 
-link : [https://github.com/Val0007/Socialbetting-Testing](https://github.com/Val0007/Socialbetting-Testing)
+**link : [https://github.com/Val0007/Socialbetting-Testing](https://github.com/Val0007/Socialbetting-Testing)**
 **To RUN**
-npx hardhat compile
-npx hardhat test solidity --coverage
+1. npx hardhat compile
+2. npx hardhat test solidity --coverage
 
 
 
@@ -74,7 +74,7 @@ Bet Creators
 
 ### contracts/Prediction.sol
 
-**Constructor Function** `constructor(address betCreator, string memory title, string[] memory optionsToBet)`
+**1. Constructor Function** `constructor(address betCreator, string memory title, string[] memory optionsToBet)`
 
 **What it does:** Creates a new prediction market contract
 
@@ -84,7 +84,7 @@ Bet Creators
 - `optionsToBet` (string[]) - Array of possible outcomes
 
 
-**placeBet Function:** `placeBet(uint256 index, uint256 amount) public payable`
+**2. placeBet Function:** `placeBet(uint256 index, uint256 amount) public payable`
 
 **What it does:** Allows users to place a bet on a specific option
 
@@ -102,7 +102,7 @@ Bet Creators
 
  
 
-**settleBet Function:** `settleBet(uint256 winnerIndex) public payable`
+**3. settleBet Function:** `settleBet(uint256 winnerIndex) public payable`
 
 **What it does:** Settles the bet and distributes payouts to winners
 
@@ -122,7 +122,7 @@ Bet Creators
 
 ### src/Network.tsx
 
-**getBets Function** 
+**1. getBets Function** 
 `async getBets()`
 
 **What it does:** Retrieves all deployed prediction contracts from factory
@@ -131,7 +131,7 @@ Bet Creators
 
 **Returns:** `string[]` - Array of prediction contract addresses
 
-**getMyBets Function**
+**2. getMyBets Function**
 `
 async getMyBets(address: string): Promise
 `
@@ -144,7 +144,7 @@ async getMyBets(address: string): Promise
 **Returns:** `Promise<Bet[]>` - Array of Bet objects with complete information
 
 
-**getJointedBets Function**
+**3. getJointedBets Function**
 `
 async getJointedBets(addresses: string[]): Promise
 `
@@ -156,7 +156,7 @@ async getJointedBets(addresses: string[]): Promise
 
 **Returns:** `Promise<Bet[]>` - Array of Bet objects with user's participation data
 
-**deployPrediction Function**
+**4. deployPrediction Function**
 `
 async deployPrediction(title: string, options: string[])
 `
@@ -178,7 +178,7 @@ async deployPrediction(title: string, options: string[])
 - Contract registered in factory
 - Returns transaction details
 
-**placeBet Function**
+**5. placeBet Function**
 `
 async placeBet(index: number, amount: number, address: string)
 `
@@ -204,7 +204,7 @@ async placeBet(index: number, amount: number, address: string)
 - Bet recorded on-chain
 - User added to participants list
 
-  **settleBet Function**
+  **6. settleBet Function**
   `
 async settleBet(index: number, address: string)
 `
@@ -227,4 +227,5 @@ async settleBet(index: number, address: string)
 - Winners receive payouts automatically
 - Creator receives dynamic fee
 - Or all bets refunded if <1.05x payout
+
 
