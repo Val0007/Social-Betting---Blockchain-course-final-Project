@@ -229,3 +229,5 @@ async settleBet(index: number, address: string)
 - Or all bets refunded if <1.05x payout
 
 
+
+
